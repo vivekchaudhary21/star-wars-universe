@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
-import { Navigation } from './components/custom'
+import { Navigation } from './customComponents'
 import { Character, Characters, Favourites } from './pages'
 
 export const App = () => {
