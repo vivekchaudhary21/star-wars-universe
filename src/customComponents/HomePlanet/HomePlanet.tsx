@@ -5,7 +5,6 @@ export const HomePlanet = ({ url }: { url: string }) => {
   const {
     data: homePlanet,
     isPending,
-    error,
     isFetching,
   } = useGetStarWarsUniverseCharacterHomePlanet({ API_URL: url })
 

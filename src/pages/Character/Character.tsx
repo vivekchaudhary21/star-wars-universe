@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { Card, Flex, Heading, VStack } from '@chakra-ui/react'
-import { Center } from '@chakra-ui/react'
+import { Center, Card, Flex, Heading, VStack } from '@chakra-ui/react'
 import {
   Loader,
   MoviesByCharacter,
@@ -13,8 +12,19 @@ export const Character = () => {
   const { id } = useParams()
   const { isPending, error, data, isFetching } =
     useGetStarWarsUniverseCharacter(id)
+
   if (isFetching || isPending) {
     return <Loader />
+  }
+
+  console.log({ data })
+
+  if (error || data.detail === 'Not found') {
+    return (
+      <Center mt={10}>
+        <Heading>No star wars character found</Heading>
+      </Center>
+    )
   }
 
   const {

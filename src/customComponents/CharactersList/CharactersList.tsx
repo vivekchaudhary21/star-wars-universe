@@ -14,8 +14,10 @@ export const CharactersList = ({
   setCharacterCount: (value: number) => void
 }) => {
   // custom hooks
-  const { isPending, error, data, isFetching } =
-    useGetStarWarsUniverseCharacters(searchTerm, page)
+  const { isPending, data, isFetching } = useGetStarWarsUniverseCharacters(
+    searchTerm,
+    page
+  )
 
   useEffect(() => {
     if (data) {
