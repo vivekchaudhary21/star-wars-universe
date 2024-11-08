@@ -1,5 +1,5 @@
 import { API_STAR_WARS_PEOPLE } from '../constants'
-import { useQuery } from '@tanstack/react-query'
+import { useQueries, useQuery } from '@tanstack/react-query'
 
 export const useGetStarWarsUniverseCharacters = (
   searchTerm: string,
@@ -38,6 +38,42 @@ export const useGetStarWarsUniverseCharacter = (id: string | undefined) => {
     queryFn: async () => {
       const response = await fetch(API_URL)
       return await response.json()
+    },
+  })
+}
+
+export const useGetStarWarsUniverseMovies = (movie_urls: string[]) => {
+  return useQueries({
+    queries: movie_urls.map((url: string) => ({
+      queryKey: [url],
+      queryFn: async () => {
+        const response = await fetch(url)
+        return response.json()
+      },
+    })),
+    combine: (results) => {
+      return {
+        data: results.map((result) => result.data),
+        pending: results.some((result) => result.isPending),
+      }
+    },
+  })
+}
+
+export const useGetStarWarsUniverseStarships = (starShipsUrls: string[]) => {
+  return useQueries({
+    queries: starShipsUrls.map((url: string) => ({
+      queryKey: [url],
+      queryFn: async () => {
+        const response = await fetch(url)
+        return response.json()
+      },
+    })),
+    combine: (results) => {
+      return {
+        data: results.map((result) => result.data),
+        pending: results.some((result) => result.isPending),
+      }
     },
   })
 }
