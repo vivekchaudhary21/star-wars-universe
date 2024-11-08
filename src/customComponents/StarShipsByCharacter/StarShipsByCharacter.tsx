@@ -8,8 +8,6 @@ export const StarShipsByCharacter = ({
 }) => {
   const { data, pending } = useGetStarWarsUniverseStarships(starShips)
 
-  console.log({ data })
-
   if (pending) {
     return (
       <Center>

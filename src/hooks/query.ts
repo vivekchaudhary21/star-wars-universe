@@ -77,3 +77,21 @@ export const useGetStarWarsUniverseStarships = (starShipsUrls: string[]) => {
     },
   })
 }
+
+export const useGetStarWarsUniverseCharactersByIds = (ids: string[]) => {
+  return useQueries({
+    queries: ids.map((id: string) => ({
+      queryKey: ['star-wars-universe-characters', id],
+      queryFn: async () => {
+        const response = await fetch(`${API_STAR_WARS_PEOPLE}${id}`)
+        return response.json()
+      },
+    })),
+    combine: (results) => {
+      return {
+        data: results.map((result) => result.data),
+        pending: results.some((result) => result.isPending),
+      }
+    },
+  })
+}
