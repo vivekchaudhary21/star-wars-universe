@@ -1,10 +1,13 @@
 import { CharacterDetail } from '../../types'
 import { Center, Card, VStack } from '@chakra-ui/react'
+import { Editable } from '..'
 
 export const CharacterDetails = ({
   character,
+  editable = false,
 }: {
   character: CharacterDetail
+  editable?: boolean
 }) => {
   const {
     name,
@@ -25,8 +28,12 @@ export const CharacterDetails = ({
           </Center>
           <Card.Description>
             <VStack>
-              <p>Gender: {gender}</p>
-              <p>Height: {height}</p>
+              <p>
+                Gender: <Editable editable={editable} value={gender} />
+              </p>
+              <p>
+                Height: <Editable editable={editable} value={height} />
+              </p>
               <p>Mass: {mass}</p>
               <p>Hair color: {hair_color}</p>
               <p>Skin color: {skin_color}</p>

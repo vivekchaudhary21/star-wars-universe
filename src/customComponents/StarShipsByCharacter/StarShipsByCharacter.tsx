@@ -18,7 +18,7 @@ export const StarShipsByCharacter = ({
 
   return (
     <>
-      {data.length && (
+      {data.length ? (
         <>
           <Center>
             <Heading>Star Ships</Heading>
@@ -37,6 +37,8 @@ export const StarShipsByCharacter = ({
             ))}
           </Flex>
         </>
+      ) : (
+        <></>
       )}
     </>
   )

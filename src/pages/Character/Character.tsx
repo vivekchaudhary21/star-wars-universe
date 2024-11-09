@@ -33,7 +33,7 @@ export const Character = () => {
   return (
     <>
       <Flex justifyContent={'center'}>
-        <CharacterDetails character={data} />
+        <CharacterDetails character={data} editable />
         <Favourites liked={liked} setLiked={() => setLSValue(id)} />
       </Flex>
       <MoviesByCharacter movies={films} />
