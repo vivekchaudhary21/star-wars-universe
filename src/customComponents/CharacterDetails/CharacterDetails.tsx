@@ -18,7 +18,7 @@ export const CharacterDetails = ({
   } = character
   return (
     <Center>
-      <Card.Root>
+      <Card.Root minW={'200px'} m={'10px'}>
         <Card.Body gap="2">
           <Center>
             <Card.Title>{name}</Card.Title>

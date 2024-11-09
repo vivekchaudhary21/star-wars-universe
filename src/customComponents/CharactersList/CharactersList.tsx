@@ -2,7 +2,8 @@ import { Flex } from '@chakra-ui/react'
 import { useGetStarWarsUniverseCharacters } from '../../hooks'
 import { CharacterDetails } from '@/types'
 import { CharacterCard, Loader } from '../../customComponents'
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
+import throttle from 'lodash/throttle'
 
 export const CharactersList = ({
   searchTerm,
@@ -14,9 +15,12 @@ export const CharactersList = ({
   setCharacterCount: (value: number) => void
 }) => {
   // custom hooks
-  const { isPending, data, isFetching } = useGetStarWarsUniverseCharacters(
-    searchTerm,
-    page
+  const { isPending, data, isFetching, refetch } =
+    useGetStarWarsUniverseCharacters(searchTerm, page)
+
+  const throttledRefetchFn = useCallback(
+    throttle(() => refetch(), 1000),
+    [refetch]
   )
 
   useEffect(() => {
@@ -24,6 +28,10 @@ export const CharactersList = ({
       setCharacterCount(data.count)
     }
   }, [setCharacterCount, data])
+
+  useEffect(() => {
+    throttledRefetchFn()
+  }, [searchTerm, throttledRefetchFn])
 
   if (isFetching || isPending) {
     return <Loader />

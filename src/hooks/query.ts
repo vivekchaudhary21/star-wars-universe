@@ -6,13 +6,13 @@ export const useGetStarWarsUniverseCharacters = (
   page: number
 ) => {
   const API_URL = `${API_STAR_WARS_PEOPLE}?page=${page}&search=${searchTerm}`
-
   return useQuery({
     queryKey: ['star-wars-universe-characters', searchTerm, page],
     queryFn: async () => {
       const response = await fetch(API_URL)
       return await response.json()
     },
+    enabled: !searchTerm,
   })
 }
 
