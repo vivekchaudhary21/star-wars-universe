@@ -18,6 +18,7 @@ export const CharactersList = ({
   const { isPending, data, isFetching, refetch } =
     useGetStarWarsUniverseCharacters(searchTerm, page)
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const throttledRefetchFn = useCallback(
     throttle(() => refetch(), 1000),
     [refetch]

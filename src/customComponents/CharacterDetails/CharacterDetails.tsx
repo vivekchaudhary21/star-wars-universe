@@ -1,5 +1,5 @@
-import { CharacterDetail } from '../../types'
 import { Center, Card, VStack } from '@chakra-ui/react'
+import { CharacterDetail } from '../../types'
 import { Editable } from '..'
 
 export const CharacterDetails = ({
